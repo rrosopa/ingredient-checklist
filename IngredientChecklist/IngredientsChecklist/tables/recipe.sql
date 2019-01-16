@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[recipe]
+(
+	[id] INT NOT NULL,
+	[name] VARCHAR(50) NOT NULL,
+	[user_id] INT NOT NULL,
+	CONSTRAINT PK_RECIPE PRIMARY KEY([id]),
+	CONSTRAINT FK_RECIPE_USER_ID FOREIGN KEY([user_id]) REFERENCES [user]([id])
+)

@@ -1,0 +1,11 @@
+﻿CREATE TABLE [dbo].[ingredient]
+(
+	[id] INT NOT NULL,
+	[recipe_id] INT NOT NULL,
+	[name] VARCHAR(50) NOT NULL,
+	[is_checked] bit NOT NULL,
+	[user_id] INT NOT NULL,
+	CONSTRAINT PK_INGREDIENTS PRIMARY KEY([id]),
+	CONSTRAINT FK_INGREDIENTS_RECIPE_ID FOREIGN KEY ([recipe_id]) REFERENCES [recipe]([id]),
+	CONSTRAINT FK_INGREDIENTS_USER_ID FOREIGN KEY ([user_id]) REFERENCES [user]([id])
+)

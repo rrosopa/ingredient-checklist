@@ -1,0 +1,64 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2035
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{CC30D9E4-2651-4583-B629-B5EFBF4AA2EC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{BC4ADF90-543E-4B4E-9F18-58865A3A78A1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{FFC09796-9B8B-4DB3-9C69-161BA332E315}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "Data\Data.csproj", "{AC37C817-381C-4162-890A-0FB6A50637C5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Services.csproj", "{DD62AD81-484E-4792-A29E-768096B9BF00}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{E313E593-31EA-4E80-8BCE-B3AD8FA0F1D9}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "IngredientChecklist", "IngredientsChecklist\IngredientChecklist.sqlproj", "{B1D48122-3DC8-4B2A-9526-C177FB50D8F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "WebAPI\WebAPI.csproj", "{A83D9A3A-E0BF-48DC-9E21-4097FF48B382}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FFC09796-9B8B-4DB3-9C69-161BA332E315}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFC09796-9B8B-4DB3-9C69-161BA332E315}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFC09796-9B8B-4DB3-9C69-161BA332E315}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFC09796-9B8B-4DB3-9C69-161BA332E315}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC37C817-381C-4162-890A-0FB6A50637C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC37C817-381C-4162-890A-0FB6A50637C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC37C817-381C-4162-890A-0FB6A50637C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC37C817-381C-4162-890A-0FB6A50637C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD62AD81-484E-4792-A29E-768096B9BF00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD62AD81-484E-4792-A29E-768096B9BF00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD62AD81-484E-4792-A29E-768096B9BF00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD62AD81-484E-4792-A29E-768096B9BF00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1D48122-3DC8-4B2A-9526-C177FB50D8F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1D48122-3DC8-4B2A-9526-C177FB50D8F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1D48122-3DC8-4B2A-9526-C177FB50D8F1}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{B1D48122-3DC8-4B2A-9526-C177FB50D8F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1D48122-3DC8-4B2A-9526-C177FB50D8F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1D48122-3DC8-4B2A-9526-C177FB50D8F1}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{A83D9A3A-E0BF-48DC-9E21-4097FF48B382}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A83D9A3A-E0BF-48DC-9E21-4097FF48B382}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A83D9A3A-E0BF-48DC-9E21-4097FF48B382}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A83D9A3A-E0BF-48DC-9E21-4097FF48B382}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FFC09796-9B8B-4DB3-9C69-161BA332E315} = {CC30D9E4-2651-4583-B629-B5EFBF4AA2EC}
+		{AC37C817-381C-4162-890A-0FB6A50637C5} = {CC30D9E4-2651-4583-B629-B5EFBF4AA2EC}
+		{DD62AD81-484E-4792-A29E-768096B9BF00} = {CC30D9E4-2651-4583-B629-B5EFBF4AA2EC}
+		{B1D48122-3DC8-4B2A-9526-C177FB50D8F1} = {E313E593-31EA-4E80-8BCE-B3AD8FA0F1D9}
+		{A83D9A3A-E0BF-48DC-9E21-4097FF48B382} = {BC4ADF90-543E-4B4E-9F18-58865A3A78A1}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4718A526-51C6-4CD3-8865-9C2628E32EB0}
+	EndGlobalSection
+EndGlobal

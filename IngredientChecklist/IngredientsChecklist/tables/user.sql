@@ -1,0 +1,9 @@
+﻿CREATE TABLE [dbo].[user]
+(
+	[id] INT NOT NULL,
+	[name] VARCHAR(150) NOT NULL,
+	[username] VARCHAR(50) NOT NULL,
+	[password] VARCHAR(50) NOT NULL,
+	CONSTRAINT PK_USER PRIMARY KEY([id]),
+	CONSTRAINT UQ_USER_USERNAME UNIQUE([username])
+)
