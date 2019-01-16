@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Services.Recipes;
 
 namespace WebAPI.Controllers
 {
+	[Authorize]
 	[Route("api/recipes")]
     [ApiController]
     public class RecipesController : ControllerBase
@@ -13,12 +15,12 @@ namespace WebAPI.Controllers
 			_recipeService = recipeService;
 		}
 
-		[HttpGet("{recipeId}")]
+		[HttpGet("{recipeId:int}")]
 		public IActionResult Get(int recipeId)
 		{
 			var recipe = _recipeService.GetRecipe(recipeId);
 			if (recipe == null)
-				return NotFound($"Recipe with id:${recipeId} does not exist.");
+				return NotFound($"Recipe with id:{recipeId} does not exist.");
 
 			return Ok(recipe);
 		}
@@ -29,22 +31,22 @@ namespace WebAPI.Controllers
 			return Ok(_recipeService.GetUserRecipes());
 		}
 
-		[HttpPut("{recipeId}")]
+		[HttpPut("{recipeId:int}")]
 		public IActionResult ResetChecklist(int recipeId)
 		{
 			if (_recipeService.ResetChecklist(recipeId))
-				return BadRequest();
+				return BadRequest(false);
 
-			return Ok();
+			return Ok(true);
 		}
 
-		[HttpPut("ingredients/{ingredientId}")]
+		[HttpPut("ingredients/{ingredientId:int}")]
 		public IActionResult UpdateIngredientStatus(int ingredientId, [FromQuery]bool isChecked)
 		{
 			if (_recipeService.UpdateIngredientStatus(ingredientId, isChecked))
-				return BadRequest();
+				return BadRequest(false);
 
-			return Ok();
+			return Ok(true);
 		}
 	}
 }

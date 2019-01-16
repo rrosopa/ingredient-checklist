@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Core.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Services.Auth;
 
 namespace WebAPI.Controllers
@@ -13,10 +15,11 @@ namespace WebAPI.Controllers
 			_authenticationService = authenticationService;
 		}
 
+		[AllowAnonymous]
 		[HttpPost("")]
-		public IActionResult Login([FromBody]string username, [FromBody]string password)
+		public IActionResult Login([FromBody]LoginCredentials credentials)
 		{
-			var token = _authenticationService.Authenticate(username, password);
+			var token = _authenticationService.Authenticate(credentials.Username, credentials.Password);
 			if (token == null)
 				return Unauthorized();
 

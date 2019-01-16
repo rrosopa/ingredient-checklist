@@ -9,6 +9,9 @@ namespace Data.Mappings
 		public void Configure(EntityTypeBuilder<User> builder)
 		{
 			builder.ToTable("user");
+			builder.HasKey(x => x.Id);
+
+			builder.Property(x => x.Id).HasColumnName("id").IsRequired();
 			builder.Property(x => x.Name).HasColumnName("name").IsRequired().HasMaxLength(150);
 			builder.Property(x => x.Username).HasColumnName("username").IsRequired().HasMaxLength(50);
 			builder.Property(x => x.Password).HasColumnName("password").IsRequired().HasMaxLength(50);

@@ -13,7 +13,7 @@ namespace Data.Mappings
 
 			builder.Property(x => x.Name).HasColumnName("name").IsRequired().HasMaxLength(50);
 
-			builder.HasMany(x => x.Ingredients).WithOne().HasForeignKey(x => x.Id);
+			builder.HasMany(x => x.Ingredients).WithOne().HasForeignKey(x => x.RecipeId);
 		}
 	}
 }

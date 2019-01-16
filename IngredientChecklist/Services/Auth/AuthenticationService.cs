@@ -19,7 +19,7 @@ namespace Services.Auth
 		}
 
 		// NOTE: simple authentication for demo purposes only, password is not hash and signed
-		public string Authenticate(string username, string password)
+		public TokenDetails Authenticate(string username, string password)
 		{
 			var user =  _appDbContext.Users.SingleOrDefault(x => x.Username == username && x.Password == password);
 			if (user == null)
@@ -41,7 +41,11 @@ namespace Services.Auth
 				signingCredentials: credentials
 			);
 
-			return new JwtSecurityTokenHandler().WriteToken(token);
+			return new TokenDetails
+			{
+				Token = new JwtSecurityTokenHandler().WriteToken(token),
+				Name = user.Name
+			};
 		}
 	}
 }

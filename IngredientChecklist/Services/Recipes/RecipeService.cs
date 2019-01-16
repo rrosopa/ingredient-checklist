@@ -1,5 +1,6 @@
 ﻿using Data.Contexts;
 using Data.Entities;
+using Microsoft.EntityFrameworkCore;
 using Services.Auth;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,22 +22,22 @@ namespace Services.Recipes
 
 		public Recipe GetRecipe(int recipeId)
 		{
-			return _appDbContext.Recipes.SingleOrDefault(x => x.Id == recipeId);
+			return _appDbContext.Recipes.Include(x => x.Ingredients).SingleOrDefault(x => x.Id == recipeId);
 		}
 
 		public List<Recipe> GetUserRecipes()
 		{
-			return _appDbContext.Recipes.Where(x => x.UserId == _claimsService.UserId).ToList();
+			return _appDbContext.Recipes.Include(x => x.Ingredients).Where(x => x.UserId == _claimsService.UserId).ToList();
 		}
 
 		// TODO: replace with proper error message if time permits
 		public bool ResetChecklist(int recipeId)
 		{
-			var recipe = _appDbContext.Recipes.SingleOrDefault(x => x.Id == recipeId);
+			var recipe = _appDbContext.Recipes.Include(x => x.Ingredients).SingleOrDefault(x => x.Id == recipeId);
 			if (recipe == null)
 				return false;
 
-			recipe.Ingredients.ForEach(x => x.IsChecked = false);
+			recipe.Ingredients.ToList().ForEach(x => x.IsChecked = false);
 			_appDbContext.SaveChanges();
 			return true;
 		}

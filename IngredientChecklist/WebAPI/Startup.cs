@@ -1,5 +1,7 @@
 ﻿using Core.Models;
 using Data.Contexts;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -7,7 +9,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using Services;
+using System.Security.Claims;
+using System.Text;
 
 namespace WebAPI
 {
@@ -36,20 +41,48 @@ namespace WebAPI
 			
 			// Database
 			services.AddDbContext<AppDbContext>(
-				options => options
-					.UseLazyLoadingProxies()
-					.UseSqlServer(settings.ConnectionString)			
+				options => options.UseSqlServer(settings.ConnectionString)			
 			);
 			services.AddScoped<IAppDbContext>(x => x.GetService<AppDbContext>());
 
+			ConfigureAuthorizationSchemes(services, settings);
 			ServiceConfiguration.ConfigureAppServices(services);
 			services.AddHttpContextAccessor();
 
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+		private void ConfigureAuthorizationSchemes(IServiceCollection services, AppConfig appConfig)
+		{
+			services.AddAuthentication(x =>
+			{
+				x.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+			}).AddJwtBearer(options =>
+			{
+				options.TokenValidationParameters = new TokenValidationParameters
+				{
+					ValidateIssuer = true,
+					ValidateAudience = true,
+					ValidateLifetime = true,
+					ValidateIssuerSigningKey = true,
+					ValidIssuer = appConfig.JWTIssuer,
+					ValidAudience = appConfig.JWTIssuer,
+					IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(appConfig.JWTKey))
+				};
+			});
+
+			services.AddAuthorization(options =>
+			{
+				options.AddPolicy(JwtBearerDefaults.AuthenticationScheme, new AuthorizationPolicyBuilder()
+					.AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme‌​)
+					.RequireClaim(ClaimTypes.Actor)
+					.Build()
+				);
+			});
+		}
+
+		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+		public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {

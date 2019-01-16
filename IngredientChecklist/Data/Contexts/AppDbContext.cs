@@ -17,6 +17,7 @@ namespace Data.Contexts
 		{
 			modelBuilder.ApplyConfiguration(new UserMapping());
 			modelBuilder.ApplyConfiguration(new RecipeMapping());
+			modelBuilder.ApplyConfiguration(new IngredientMapping());
 		}
 	}
 }

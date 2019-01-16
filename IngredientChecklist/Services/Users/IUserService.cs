@@ -1,9 +1,6 @@
-﻿using Data.Entities;
-
-namespace Services.Users
+﻿namespace Services.Users
 {
 	public interface IUserService
     {
-		User Get(int id);
     }
 }

@@ -1,9 +1,9 @@
-﻿using Data.Entities;
+﻿using Core.Models;
 
 namespace Services.Auth
 {
 	public interface IAuthenticationService
     {
-		string Authenticate(string username, string password);
+		TokenDetails Authenticate(string username, string password);
     }
 }

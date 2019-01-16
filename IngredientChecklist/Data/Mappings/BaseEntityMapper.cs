@@ -11,7 +11,7 @@ namespace Data.Mappings
 			builder.HasKey(x => x.Id);
 
 			builder.Property(x => x.Id).HasColumnName("id").IsRequired();
-			builder.Property(x => x.UserId).HasColumnName("user_id");
+			builder.Property(x => x.UserId).HasColumnName("user_id").IsRequired();
 		}
 	}
 }
