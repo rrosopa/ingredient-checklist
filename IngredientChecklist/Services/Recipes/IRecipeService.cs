@@ -10,5 +10,6 @@ namespace Services.Recipes
 
 		bool UpdateIngredientStatus(int ingredientId, bool isChecked);
 		bool ResetChecklist(int recipeId);
-    }
+		bool AddRecipe(Recipe recipe);
+	}
 }

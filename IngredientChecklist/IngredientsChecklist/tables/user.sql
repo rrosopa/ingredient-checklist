@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[user]
 (
-	[id] INT NOT NULL,
+	[id] INT NOT NULL IDENTITY(1,1),
 	[name] VARCHAR(150) NOT NULL,
 	[username] VARCHAR(50) NOT NULL,
 	[password] VARCHAR(50) NOT NULL,

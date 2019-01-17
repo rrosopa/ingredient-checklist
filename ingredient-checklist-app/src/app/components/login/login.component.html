@@ -1,0 +1,18 @@
+<div class="main-div">
+    <mat-card class="z-depth center" flex="50" style="max-width: 300px">
+        <mat-card-header>
+            <mat-card-title>Login</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-form-field>
+                <mat-select placeholder="User" [(ngModel)]="selectedUser">
+                    <mat-option *ngFor="let user of users" [value]="user.id">
+                        {{user.label}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <span class="fill-space"></span>
+            <button mat-raised-button color="primary" style="float: right" (click)="click_login()">Sign In</button>
+        </mat-card-content>
+    </mat-card>
+</div>

@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[recipe]
 (
-	[id] INT NOT NULL,
+	[id] INT NOT NULL IDENTITY(1,1),
 	[name] VARCHAR(50) NOT NULL,
 	[user_id] INT NOT NULL,
 	CONSTRAINT PK_RECIPE PRIMARY KEY([id]),

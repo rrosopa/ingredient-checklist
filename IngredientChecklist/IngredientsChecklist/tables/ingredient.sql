@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[ingredient]
 (
-	[id] INT NOT NULL,
+	[id] INT NOT NULL IDENTITY(1,1),
 	[recipe_id] INT NOT NULL,
 	[name] VARCHAR(50) NOT NULL,
 	[is_checked] bit NOT NULL,

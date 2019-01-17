@@ -1,5 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { AppRoutingModule } from './modules/app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 
 //services
 import { AuthGuardService } from './services/auth-guard.service';
@@ -8,20 +11,46 @@ import { JwtInterceptorService } from './services/jwt-interceptor.service';
 import { AlertService } from './services/alert.service';
 import { LogService } from './services/log.service';
 import { RecipeService } from './services/recipe.service';
+import { UserService } from './services/user.service';
 
 //
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LoginComponent } from './components/login/login.component';
+
+//angular material
+import { MatToolbarModule, MatCheckboxModule, MatListModule, MatButtonModule, MatSnackBarModule, MatInputModule, MatCardModule, MatSelectModule, 
+        MatFormFieldModule, MatIconModule, MatExpansionModule, MatDividerModule } from '@angular/material';
+import { RecipeListComponent } from './components/recipe-list/recipe-list.component';
+import { ErrorPageNotFoundComponent } from './components/error-page-not-found/error-page-not-found.component';
+import { RecipeFormComponent } from './components/recipe-form/recipe-form.component'
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent,
+    RecipeListComponent,
+    ErrorPageNotFoundComponent,
+    RecipeFormComponent,
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
+    BrowserAnimationsModule ,
     AppRoutingModule,
-    HttpClientModule
+    FormsModule,
+    MatToolbarModule,
+    MatCheckboxModule,
+    MatListModule,
+    MatButtonModule,
+    MatSnackBarModule,
+    MatInputModule,
+    MatCardModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatExpansionModule,
+    MatDividerModule
   ],
   providers: [
     AuthGuardService,
@@ -29,7 +58,13 @@ import { HttpClientModule } from '@angular/common/http';
     JwtInterceptorService,
     AlertService,
     LogService,
-    RecipeService
+    RecipeService,
+    UserService,
+    {
+        provide: HTTP_INTERCEPTORS,
+        useClass: JwtInterceptorService,
+        multi: true
+    },
   ],
   bootstrap: [AppComponent]
 })

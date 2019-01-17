@@ -19,7 +19,7 @@ namespace WebAPI.Controllers
 		[HttpPost("")]
 		public IActionResult Login([FromBody]LoginCredentials credentials)
 		{
-			var token = _authenticationService.Authenticate(credentials.Username, credentials.Password);
+			var token = _authenticationService.Authenticate(credentials.Username);
 			if (token == null)
 				return Unauthorized();
 

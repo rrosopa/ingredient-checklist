@@ -1,4 +1,4 @@
 export const AppConstants = {
-    Token: 'AUTH_TOKEN',
-    CurrentUsername: 'USER_NAME'
+    token: 'AUTH_TOKEN',
+    currentUsername: 'USER_NAME'
 }

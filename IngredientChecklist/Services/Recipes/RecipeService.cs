@@ -54,5 +54,27 @@ namespace Services.Recipes
 			_appDbContext.SaveChanges();
 			return true;
 		}
+
+		public bool AddRecipe(Recipe recipe)
+		{
+			if (string.IsNullOrEmpty(recipe.Name))
+				return false;
+
+			if (recipe.Ingredients?.Any() == false)
+				return false;
+
+			var currentUserId = _claimsService.UserId;
+			foreach (var ingredient in recipe.Ingredients)
+			{
+				ingredient.UserId = currentUserId;
+				if (string.IsNullOrEmpty(ingredient.Name))
+					return false;
+			}
+
+			recipe.UserId = currentUserId;
+			_appDbContext.Recipes.Add(recipe);
+			_appDbContext.SaveChanges();
+			return true;
+		}
 	}
 }

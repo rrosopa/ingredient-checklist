@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Data.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Services.Recipes;
 
@@ -31,19 +32,28 @@ namespace WebAPI.Controllers
 			return Ok(_recipeService.GetUserRecipes());
 		}
 
+		[HttpPost("")]
+		public IActionResult ResetChecklist([FromBody]Recipe recipe)
+		{
+			if (!_recipeService.AddRecipe(recipe))
+				return BadRequest();
+
+			return Ok(recipe);
+		}
+
 		[HttpPut("{recipeId:int}")]
 		public IActionResult ResetChecklist(int recipeId)
 		{
-			if (_recipeService.ResetChecklist(recipeId))
+			if (!_recipeService.ResetChecklist(recipeId))
 				return BadRequest(false);
 
 			return Ok(true);
 		}
 
 		[HttpPut("ingredients/{ingredientId:int}")]
-		public IActionResult UpdateIngredientStatus(int ingredientId, [FromQuery]bool isChecked)
+		public IActionResult UpdateIngredientStatus(int ingredientId, [FromQuery]bool isChecked) 
 		{
-			if (_recipeService.UpdateIngredientStatus(ingredientId, isChecked))
+			if (!_recipeService.UpdateIngredientStatus(ingredientId, isChecked))
 				return BadRequest(false);
 
 			return Ok(true);

@@ -1,1 +1,38 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+.fill-space {
+    flex: 1 1 auto;
+}
+
+.alert-warning {
+    background-color: #f44336;
+}
+
+.alert-success {
+    background-color: #388E3C;
+}
+
+.center {
+    width: 75%;
+    margin: 10px auto;
+}
+
+.main-div {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-spacing {
+    margin-bottom: 15px;
+}
+
+.width-max {
+    width: 100%;
+}
+
+.required {
+    color: red;
+}

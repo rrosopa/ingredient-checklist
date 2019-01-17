@@ -1,0 +1,16 @@
+<mat-accordion>
+    <mat-expansion-panel *ngFor="let recipe of recipes">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <button mat-raised-button color="warn" style="float: left; margin-right: 15px" (click)="click_clearChecklist(recipe)">Clear</button>
+                <mat-icon mat-list-icon>fastfood</mat-icon> &nbsp;{{recipe.name}}
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <mat-list>
+            <mat-list-item *ngFor="let ingredient of recipe.ingredients">
+                <mat-checkbox [(ngModel)]="ingredient.isChecked" (change)="change_updateIngredientStatus(ingredient)">{{ingredient.name}}</mat-checkbox>
+            </mat-list-item>
+        </mat-list>
+    </mat-expansion-panel>
+</mat-accordion>

@@ -54,31 +54,19 @@ namespace WebAPI
 
 		private void ConfigureAuthorizationSchemes(IServiceCollection services, AppConfig appConfig)
 		{
-			services.AddAuthentication(x =>
-			{
-				x.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-			}).AddJwtBearer(options =>
-			{
-				options.TokenValidationParameters = new TokenValidationParameters
+			services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+				.AddJwtBearer(options =>
 				{
-					ValidateIssuer = true,
-					ValidateAudience = true,
-					ValidateLifetime = true,
-					ValidateIssuerSigningKey = true,
-					ValidIssuer = appConfig.JWTIssuer,
-					ValidAudience = appConfig.JWTIssuer,
-					IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(appConfig.JWTKey))
-				};
-			});
-
-			services.AddAuthorization(options =>
-			{
-				options.AddPolicy(JwtBearerDefaults.AuthenticationScheme, new AuthorizationPolicyBuilder()
-					.AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme‌​)
-					.RequireClaim(ClaimTypes.Actor)
-					.Build()
-				);
-			});
+					options.TokenValidationParameters = new TokenValidationParameters
+					{
+						ValidateIssuer = true,
+						ValidateAudience = true,
+						ValidateIssuerSigningKey = true,
+						ValidIssuer = appConfig.JWTIssuer,
+						ValidAudience = appConfig.JWTIssuer,
+						IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(appConfig.JWTKey))
+					};
+				});
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -93,6 +81,7 @@ namespace WebAPI
                 app.UseHsts();
             }
 
+			app.UseAuthentication();
             app.UseHttpsRedirection();
             app.UseMvc();
         }

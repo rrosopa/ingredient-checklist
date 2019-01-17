@@ -1,0 +1,71 @@
+<!-- <div>
+    <mat-form-field>
+        <input matInput placeholder="Recipe Name" [(ngModel)]="recipe.name">
+    </mat-form-field>
+
+    <table>
+        <tr>
+            <th>Ingredients</th>
+            <th><button mat-raised-button color="primary" (click)="click_addIngredient()"><mat-icon>add</mat-icon></button></th>
+        </tr>
+        <tr *ngFor="let ingredient of recipe.ingredients; let i = index">
+            <td>
+                    <mat-form-field>
+                            <input matInput [(ngModel)]="ingredient.name" /> 
+                    </mat-form-field>
+            </td>
+            <td>
+                <button mat-raised-button color="warn" (click)="click_removeIngredient(i)"><mat-icon>clear</mat-icon></button>
+            </td>
+        </tr>
+    </table>
+
+    <mat-divider></mat-divider>
+    <button mat-raised-button color="primary" (click)="click_addRecipe()">Submit</button>
+</div> -->
+
+<div class="div-container">
+    <mat-card class="z-depth center" flex="50" style="max-width: 500px">
+        <mat-card-content>
+            <table class="width-max">
+                <tr>
+                    <td>
+                        <mat-form-field class="width-max">
+                            <input matInput placeholder="Recipe Name" [(ngModel)]="recipe.name" maxlength="50">
+                            <mat-hint class='required'>
+                               <strong>required</strong>
+                            </mat-hint>
+                        </mat-form-field>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>Ingredients <i>(atleast 1 is required)</i></th>
+                    <th>
+                        <button mat-button color="primary" (click)="click_addIngredient()" style="float: left">
+                            <mat-icon>add</mat-icon>
+                        </button>
+                    </th>
+                </tr>
+                <tr *ngFor="let ingredient of recipe.ingredients; let i = index">
+                    <td>
+                        <mat-form-field class="width-max">
+                            <input matInput [(ngModel)]="ingredient.name" maxlength="50" name="name"/>
+                            <mat-hint class='required'>
+                                <strong>required</strong>
+                            </mat-hint>
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <button mat-button color="warn" (click)="click_removeIngredient(i)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button color="primary" (click)="click_addRecipe()">Submit</button>
+        </mat-card-actions>
+    </mat-card>
+</div>

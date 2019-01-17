@@ -37,9 +37,16 @@ export class RecipeService {
     }
     
     updateIngredientStatus(ingredientId: number, status: boolean): Observable<boolean> {
-		return this._http.put<boolean>(`/api/recipes/ingredients/${ingredientId}`, JSON.stringify(`isChecked: ${status}`))
+		return this._http.put<boolean>(`/api/recipes/ingredients/${ingredientId}?isChecked=${status}`, JSON.stringify(`isChecked: ${status}`))
 			.pipe(
 				catchError(this._logService.handleError<boolean>('updateIngredientStatus'))
 			);
-	}
+    }
+    
+    addRecipe(recipe: Recipe): Observable<Recipe> {
+		return this._http.post<Recipe>(`/api/recipes`, JSON.stringify(recipe))
+			.pipe(
+				catchError(this._logService.handleError<Recipe>('addRecipe'))
+			);
+    }
 }

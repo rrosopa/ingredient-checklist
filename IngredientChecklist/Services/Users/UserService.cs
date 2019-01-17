@@ -1,5 +1,7 @@
-﻿using Data.Contexts;
+﻿using Core.Models;
+using Data.Contexts;
 using Services.Auth;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Services.Users
@@ -16,5 +18,12 @@ namespace Services.Users
 			_claimsService = claimsService;
 			_appDbContext = appDbContext;
 		}
+
+		public List<IdLabelPair> GetUserDictionary() => 
+			_appDbContext.Users.Select(x => new IdLabelPair
+			{
+				Id = x.Username,
+				Label = x.Name
+			}).ToList();
 	}
 }
