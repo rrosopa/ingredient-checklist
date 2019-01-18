@@ -22,7 +22,7 @@ namespace Services.Recipes
 
 		public Recipe GetRecipe(int recipeId)
 		{
-			return _appDbContext.Recipes.Include(x => x.Ingredients).SingleOrDefault(x => x.Id == recipeId);
+			return _appDbContext.Recipes.Include(x => x.Ingredients).SingleOrDefault(x => x.Id == recipeId && x.UserId == _claimsService.UserId);
 		}
 
 		public List<Recipe> GetUserRecipes()
@@ -33,7 +33,7 @@ namespace Services.Recipes
 		// TODO: replace with proper error message if time permits
 		public bool ResetChecklist(int recipeId)
 		{
-			var recipe = _appDbContext.Recipes.Include(x => x.Ingredients).SingleOrDefault(x => x.Id == recipeId);
+			var recipe = _appDbContext.Recipes.Include(x => x.Ingredients).SingleOrDefault(x => x.Id == recipeId && x.UserId == _claimsService.UserId);
 			if (recipe == null)
 				return false;
 
@@ -45,7 +45,7 @@ namespace Services.Recipes
 		// TODO: replace with proper error message if time permits
 		public bool UpdateIngredientStatus(int ingredientId, bool isChecked)
 		{
-			var ingredient = _appDbContext.Ingredients.SingleOrDefault(x => x.Id == ingredientId);
+			var ingredient = _appDbContext.Ingredients.SingleOrDefault(x => x.Id == ingredientId && x.UserId == _claimsService.UserId);
 			if (ingredient == null)
 				return false;
 
